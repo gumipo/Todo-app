@@ -6,8 +6,8 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   return (
-    <div>
-      <h1>Todo App</h1>
+    <div className="c-section-container">
+      <h1 className="u-text__headline">Todo App</h1>
       <SetNewTodo todos={todos} setTodos={setTodos} />
     </div>
   );

@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core";
 import CheckCicleIcon from "@material-ui/icons/CheckCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import CheckIcon from "@material-ui/icons/Check";
 
 import TextInput from "../components/UIkit/TextInput";
 
@@ -67,12 +68,15 @@ const SetNewTodo = (props) => {
     props.setTodos(newTodos);
   };
 
+  // const CompletedTodo=(completIndex)=>{
+  //   const
+
   return (
     <div>
       <div>
         <TextInput
           fullWidth={true}
-          label={"add newTodo"}
+          label={"newTodo"}
           multiline={false}
           required={true}
           rows={1}
@@ -87,20 +91,26 @@ const SetNewTodo = (props) => {
       >
         <CheckCicleIcon />
       </IconButton>
+
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>TodoList</TableCell>
+              <TableCell>
+                <h2>TodoList</h2>
+              </TableCell>
+              <TableCell className={classes.iconCell} />
               <TableCell className={classes.iconCell} />
               <TableCell className={classes.iconCell} />
             </TableRow>
           </TableHead>
+
           <TableBody>
-            {props.todos.length > 0 &&
+            {props.todos.length > 0 ? (
               props.todos.map((todo, i) => (
                 <TableRow key={todo.title}>
                   <TableCell>{todo.title}</TableCell>
+
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
@@ -109,6 +119,62 @@ const SetNewTodo = (props) => {
                       <EditIcon />
                     </IconButton>
                   </TableCell>
+
+                  <TableCell>
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => deleteTodo(i)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+
+                  <TableCell>
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => deleteTodo(i)}
+                    >
+                      <CheckIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <p>no todo</p>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <div className="module-spacer--medium"></div>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <h2>CompleteTodoList</h2>
+              </TableCell>
+              <TableCell className={classes.iconCell} />
+              <TableCell className={classes.iconCell} />
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {props.todos.length > 0 ? (
+              props.todos.map((todo, i) => (
+                <TableRow key={todo.title}>
+                  <TableCell>{todo.title}</TableCell>
+
+                  <TableCell>
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => editTodo(i, todo.title)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </TableCell>
+
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
@@ -118,7 +184,10 @@ const SetNewTodo = (props) => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <p>no todo</p>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
