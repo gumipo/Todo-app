@@ -1,9 +1,8 @@
 const initialState = {
-  todo: {
-    list: [],
-  },
-  complateTodo: {
-    list: [],
+  todos: {
+    isCompeted: false,
+    id: "",
+    title: "",
   },
 };
 export default initialState;

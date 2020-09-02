@@ -9,14 +9,13 @@ import {
 import { connectRouter, routerMiddleware } from "connected-react-router";
 
 //import reducers
-import { TodoReducer } from "../TodoList/reducers";
+import { TodoReducer } from "../todos/reducers";
 
 export default function createStore(history) {
   return reduxCreateStore(
     combineReducers({
       router: connectRouter(history),
-      todo: TodoReducer,
-      // completeTodoList: TodoReducer,
+      todos: TodoReducer,
     }),
     applyMiddleware(routerMiddleware(history))
   );

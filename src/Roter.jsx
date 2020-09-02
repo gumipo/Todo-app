@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import TodoApp from "./TodoApp";
+import TodoList from "./components/TodoList";
 
 const Router = () => {
   return (
     <Switch>
-      <Route exact path={"(/)?"} component={TodoApp} />
-      {/* <Route exact path={"/rule"} component={Rule} /> */}
+      <Route exact path={"(/)?"} component={TodoList} />
     </Switch>
   );
 };

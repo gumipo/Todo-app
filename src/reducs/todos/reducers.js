@@ -1,12 +1,12 @@
 import * as Actions from "./actions";
 import initialState from "../Store/initialState";
 
-export const TodoReducer = (state = initialState.todo, action) => {
+export const TodoReducer = (state = initialState.todos, action) => {
   switch (action.type) {
-    case Actions.Add_Todo:
+    case Actions.ADD_TODO:
       return {
         ...state,
-        list: [...action.payload],
+        todos: [...action.payload],
       };
     default:
       return state;
