@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -8,12 +8,15 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core";
-//icon import
+
+//material-ui-icon import
 import CheckCicleIcon from "@material-ui/icons/CheckCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import CheckIcon from "@material-ui/icons/Check";
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 
+//import component
 import TextInput from "../components/UIkit/TextInput";
 
 const useStyles = makeStyles({
@@ -68,8 +71,15 @@ const SetNewTodo = (props) => {
     props.setTodos(newTodos);
   };
 
-  // const CompletedTodo=(completIndex)=>{
-  //   const
+  const addCompleteTodo = (completeIndex) => {
+    const newCompleteTodos = props.todos.filter(
+      (item, i) => i == completeIndex
+    );
+    const newTodos = props.todos.filter((item, i) => i !== completeIndex);
+    props.setTodos(newTodos);
+
+    props.setCompleteTodos((prevState) => [...prevState, newCompleteTodos]);
+  };
 
   return (
     <div>
@@ -132,7 +142,7 @@ const SetNewTodo = (props) => {
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
-                      onClick={() => deleteTodo(i)}
+                      onClick={() => addCompleteTodo(i)}
                     >
                       <CheckIcon />
                     </IconButton>
@@ -157,19 +167,20 @@ const SetNewTodo = (props) => {
               </TableCell>
               <TableCell className={classes.iconCell} />
               <TableCell className={classes.iconCell} />
+              <TableCell className={classes.iconCell} />
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {props.todos.length > 0 ? (
-              props.todos.map((todo, i) => (
-                <TableRow key={todo.title}>
-                  <TableCell>{todo.title}</TableCell>
+            {props.completeTodos.length > 0 ? (
+              props.completeTodos.map((completetodo, i) => (
+                <TableRow key={completetodo.title}>
+                  <TableCell>{completetodo.title}</TableCell>
 
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
-                      onClick={() => editTodo(i, todo.title)}
+                      onClick={() => editTodo(i, completetodo.title)}
                     >
                       <EditIcon />
                     </IconButton>
@@ -181,6 +192,15 @@ const SetNewTodo = (props) => {
                       onClick={() => deleteTodo(i)}
                     >
                       <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+
+                  <TableCell>
+                    <IconButton
+                      className={classes.iconCell}
+                      // onClick={() => reversTodo(i)}
+                    >
+                      <KeyboardReturnIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
