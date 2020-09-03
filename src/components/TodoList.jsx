@@ -22,7 +22,7 @@ const TodoList = () => {
       <div className="module-spacer--medium"></div>
       <PrimaryButton
         label={"おぼんこぼん"}
-        onClick={() => dispatch(push("/rule"))}
+        onClick={() => dispatch(push("/obonkobon"))}
       />
     </div>
   );

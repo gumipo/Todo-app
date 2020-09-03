@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import TodoList from "./components/TodoList";
-import Rule from "./components/Rule";
+import ObonKobon from "./components/ObonKobon";
 
 const Router = () => {
   return (
     <Switch>
       <Route exact path={"(/)?"} component={TodoList} />
-      <Route exact path={"/rule"} component={Rule} />
+      <Route exact path={"/obonkobon"} component={ObonKobon} />
     </Switch>
   );
 };
