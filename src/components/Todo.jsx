@@ -78,7 +78,26 @@ const SetNewTodo = (props) => {
     const newTodos = props.todos.filter((item, i) => i !== completeIndex);
     props.setTodos(newTodos);
 
-    props.setCompleteTodos((prevState) => [...prevState, newCompleteTodos]);
+    props.setCompleteTodos((prevState) => [...prevState, ...newCompleteTodos]);
+  };
+
+  const deleteCompletedTodo = (deleteIndex) => {
+    const newCompleteTodos = props.completeTodos.filter(
+      (item, i) => i !== deleteIndex
+    );
+    props.setCompleteTodos(newCompleteTodos);
+  };
+
+  const reversTodo = (reversIndex) => {
+    const reversTodo = props.completeTodos.filter(
+      (item, i) => i == reversIndex
+    );
+    const newCompleteTodos = props.completeTodos.filter(
+      (item, i) => i !== reversIndex
+    );
+
+    props.setTodos((prevState) => [...prevState, ...reversTodo]);
+    props.setCompleteTodos(newCompleteTodos);
   };
 
   return (
@@ -150,7 +169,9 @@ const SetNewTodo = (props) => {
                 </TableRow>
               ))
             ) : (
-              <p>no todo</p>
+              <TableRow>
+                <TableCell>no todo</TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>
@@ -189,7 +210,7 @@ const SetNewTodo = (props) => {
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
-                      onClick={() => deleteTodo(i)}
+                      onClick={() => deleteCompletedTodo(i)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -198,7 +219,7 @@ const SetNewTodo = (props) => {
                   <TableCell>
                     <IconButton
                       className={classes.iconCell}
-                      // onClick={() => reversTodo(i)}
+                      onClick={() => reversTodo(i)}
                     >
                       <KeyboardReturnIcon />
                     </IconButton>
@@ -206,7 +227,9 @@ const SetNewTodo = (props) => {
                 </TableRow>
               ))
             ) : (
-              <p>no todo</p>
+              <TableRow>
+                <TableCell>no todo</TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>
