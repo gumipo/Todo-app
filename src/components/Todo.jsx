@@ -44,19 +44,23 @@ const SetNewTodo = (props) => {
   );
 
   const addTodo = (index, title) => {
-    if (title === "") {
-      return false;
+    if (!title) {
+      console.log(title);
     } else {
-      if (index === props.todos.length) {
-        props.setTodos((prevState) => [...prevState, { title: title }]);
-        setIndex(index + 1);
-        setTitle("");
+      if (title === "") {
+        return false;
       } else {
-        const newTodos = props.todos;
-        newTodos[index] = { title: title };
-        props.setTodos(newTodos);
-        setIndex(newTodos.length);
-        setTitle("");
+        if (index === props.todos.length) {
+          props.setTodos((prevState) => [...prevState, { title: title }]);
+          setIndex(index + 1);
+          setTitle("");
+        } else {
+          const newTodos = props.todos;
+          newTodos[index] = { title: title };
+          props.setTodos(newTodos);
+          setIndex(newTodos.length);
+          setTitle("");
+        }
       }
     }
   };
@@ -188,7 +192,6 @@ const SetNewTodo = (props) => {
               </TableCell>
               <TableCell className={classes.iconCell} />
               <TableCell className={classes.iconCell} />
-              <TableCell className={classes.iconCell} />
             </TableRow>
           </TableHead>
 
@@ -197,15 +200,6 @@ const SetNewTodo = (props) => {
               props.completeTodos.map((completetodo, i) => (
                 <TableRow key={completetodo.title}>
                   <TableCell>{completetodo.title}</TableCell>
-
-                  <TableCell>
-                    <IconButton
-                      className={classes.iconCell}
-                      onClick={() => editTodo(i, completetodo.title)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
 
                   <TableCell>
                     <IconButton
