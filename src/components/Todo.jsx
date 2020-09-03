@@ -77,7 +77,7 @@ const SetNewTodo = (props) => {
 
   const addCompleteTodo = (completeIndex) => {
     const newCompleteTodos = props.todos.filter(
-      (item, i) => i == completeIndex
+      (item, i) => i === completeIndex
     );
     const newTodos = props.todos.filter((item, i) => i !== completeIndex);
     props.setTodos(newTodos);
@@ -94,7 +94,7 @@ const SetNewTodo = (props) => {
 
   const reversTodo = (reversIndex) => {
     const reversTodo = props.completeTodos.filter(
-      (item, i) => i == reversIndex
+      (item, i) => i === reversIndex
     );
     const newCompleteTodos = props.completeTodos.filter(
       (item, i) => i !== reversIndex
