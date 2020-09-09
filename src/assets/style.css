@@ -1,0 +1,23 @@
+.module-spacer--medium {
+  height: 32px;
+}
+
+/*********** header ***********/
+.u-text__headline {
+  color: teal;
+}
+
+/*********** Section ***********/
+
+.c-section-container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 1rem;
+  height: auto;
+  width: calc(100% - 2rem);
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
